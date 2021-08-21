@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const { generateOtp, verifyOtp } = require('../controllers/auth');
+const {
+  generateOtp,
+  verifyOtp,
+  isJwtRequired,
+} = require('../controllers/auth');
 
 router.post('/auth/otp/generate', generateOtp);
-router.post('/auth/otp/verify', verifyOtp);
+router.post('/auth/otp/verify', isJwtRequired, verifyOtp);
 
 module.exports = router;
